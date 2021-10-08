@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import IPage from "../interfaces/page"
-import logging from "../config/logging"
+import logging from "../config/logger"
 import { useHistory } from "react-router"
 
 const HomePage: React.FC<IPage> = (props) => {

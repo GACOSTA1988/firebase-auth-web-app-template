@@ -5,7 +5,7 @@ import {
   Switch,
   RouteComponentProps,
 } from "react-router-dom"
-import logging from "./config/logging"
+import logging from "./config/logger"
 import routes from "./config/routes"
 
 const App: React.FC<{}> = (props) => {
