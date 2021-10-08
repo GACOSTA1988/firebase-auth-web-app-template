@@ -7,12 +7,26 @@ import styled from "styled-components"
 import TextField from "@mui/material/TextField"
 
 const LoginPage: React.FC<IPage> = (props) => {
+  const [password, setPassword] = React.useState("")
+  const [email, setEmail] = React.useState("")
   const history = useHistory()
 
   const handleOnClick = () => {
+    alert(`You email and password is - ${email} ${password}`)
     history.push("/home")
   }
 
+  const handlePasswordChange = (event: {
+    target: { value: React.SetStateAction<string> }
+  }) => {
+    setPassword(event.target.value)
+  }
+
+  const handleEmailChange = (event: {
+    target: { value: React.SetStateAction<string> }
+  }) => {
+    setEmail(event.target.value)
+  }
   useEffect(() => {
     logging.info(`Loading ${props.name}`)
   }, [])
@@ -21,8 +35,16 @@ const LoginPage: React.FC<IPage> = (props) => {
     <PageContainer>
       <p>LOGIN PAGE</p>
       <FormContainer>
-        <TextField label="Email" variant="outlined" />
-        <TextField label="Password" variant="outlined" />
+        <TextField
+          onChange={handlePasswordChange}
+          label="Email"
+          variant="outlined"
+        />
+        <TextField
+          onChange={handleEmailChange}
+          label="Password"
+          variant="outlined"
+        />
       </FormContainer>
       <Button onClick={handleOnClick}>GO TO HOME</Button>
     </PageContainer>
