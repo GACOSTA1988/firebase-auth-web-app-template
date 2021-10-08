@@ -3,6 +3,7 @@ import IPage from "../interfaces/page"
 import logging from "../config/logger"
 import { useHistory } from "react-router"
 import Button from "@mui/material/Button"
+import styled from "styled-components"
 
 const HomePage: React.FC<IPage> = (props) => {
   const history = useHistory()
@@ -16,11 +17,18 @@ const HomePage: React.FC<IPage> = (props) => {
   }
 
   return (
-    <div>
+    <PageContainer>
       <p>HOME PAGE</p>
       <Button onClick={handleOnClick}>GO TO LOGIN</Button>
-    </div>
+    </PageContainer>
   )
 }
 
 export default HomePage
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+`
