@@ -4,6 +4,7 @@ import logging from "../config/logger"
 import { Button } from "@mui/material"
 import { useHistory } from "react-router"
 import styled from "styled-components"
+import TextField from "@mui/material/TextField"
 
 const LoginPage: React.FC<IPage> = (props) => {
   const history = useHistory()
@@ -19,6 +20,10 @@ const LoginPage: React.FC<IPage> = (props) => {
   return (
     <PageContainer>
       <p>LOGIN PAGE</p>
+      <FormContainer>
+        <TextField label="Email" variant="outlined" />
+        <TextField label="Password" variant="outlined" />
+      </FormContainer>
       <Button onClick={handleOnClick}>GO TO HOME</Button>
     </PageContainer>
   )
@@ -31,4 +36,12 @@ const PageContainer = styled.div`
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  align-items: center;
+`
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  height: 150px;
+  justify-content: space-between;
 `
