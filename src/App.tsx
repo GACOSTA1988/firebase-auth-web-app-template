@@ -5,6 +5,7 @@ import {
   Switch,
   RouteComponentProps,
 } from "react-router-dom"
+import styled from "styled-components"
 import logging from "./config/logger"
 import routes from "./config/routes"
 
@@ -14,7 +15,7 @@ const App: React.FC<{}> = (props) => {
   }, [])
 
   return (
-    <div>
+    <PageContainer>
       <BrowserRouter>
         <Switch>
           {routes.map((route, index) => {
@@ -35,8 +36,14 @@ const App: React.FC<{}> = (props) => {
           })}
         </Switch>
       </BrowserRouter>
-    </div>
+    </PageContainer>
   )
 }
 
 export default App
+
+const PageContainer = styled.div`
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+`
