@@ -8,8 +8,6 @@ import {
 import styled from "styled-components"
 import logging from "./config/logger"
 import routes from "./config/routes"
-import firebase from "firebase/app"
-import "firebase/auth"
 
 const App: React.FC<{}> = (props) => {
   useEffect(() => {
