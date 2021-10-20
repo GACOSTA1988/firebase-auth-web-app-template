@@ -5,16 +5,12 @@ import { Button } from "@mui/material"
 import { useHistory } from "react-router"
 import styled from "styled-components"
 import TextField from "@mui/material/TextField"
+import { auth } from "../config/firebase"
 
 const LoginPage: React.FC<IPage> = (props) => {
   const [password, setPassword] = React.useState("")
   const [email, setEmail] = React.useState("")
   const history = useHistory()
-
-  const handleOnClick = () => {
-    alert(`You email and password is - ${email} ${password}`)
-    history.push("/home")
-  }
 
   const handlePasswordChange = (event: {
     target: { value: React.SetStateAction<string> }
@@ -27,26 +23,45 @@ const LoginPage: React.FC<IPage> = (props) => {
   }) => {
     setEmail(event.target.value)
   }
+
   useEffect(() => {
     logging.info(`Loading ${props.name}`)
   }, [])
 
+  const signUpWithEmailAndPassword = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        logging.info(result)
+        history.push("/home")
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  const handleSubmit = () => {
+    signUpWithEmailAndPassword()
+
+    alert(`You email and password is - ${email} ${password}`)
+    history.push("/home")
+  }
   return (
     <PageContainer>
       <p>LOGIN PAGE</p>
       <FormContainer>
         <TextField
-          onChange={handlePasswordChange}
+          onChange={handleEmailChange}
           label="Email"
           variant="outlined"
         />
         <TextField
-          onChange={handleEmailChange}
+          onChange={handlePasswordChange}
           label="Password"
           variant="outlined"
         />
       </FormContainer>
-      <Button onClick={handleOnClick}>GO TO HOME</Button>
+      <Button onClick={handleSubmit}>GO TO HOME</Button>
     </PageContainer>
   )
 }
@@ -59,6 +74,7 @@ const PageContainer = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
+  background-color: blue;
 `
 const FormContainer = styled.div`
   display: flex;
