@@ -8,6 +8,7 @@ import {
 import styled from "styled-components"
 import logging from "./config/logger"
 import routes from "./config/routes"
+import AuthRoute from "./ui/AuthRoute.tsx"
 
 const App: React.FC<{}> = (props) => {
   useEffect(() => {
@@ -24,13 +25,16 @@ const App: React.FC<{}> = (props) => {
                 key={index}
                 path={route.path}
                 exact={route.exact}
-                render={(props: RouteComponentProps<any>) => (
-                  <route.component
-                    name={route.name}
-                    {...props}
-                    {...route.props}
-                  />
-                )}
+                render={(routeProps: RouteComponentProps<any>) => {
+                  if (route.protected)
+                    return (
+                      <AuthRoute>
+                        <route.component {...routeProps} />
+                      </AuthRoute>
+                    )
+
+                  return <route.component {...routeProps} />
+                }}
               />
             )
           })}
