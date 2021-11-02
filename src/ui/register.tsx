@@ -7,7 +7,7 @@ import styled from "styled-components"
 import TextField from "@mui/material/TextField"
 import { auth } from "../config/firebase"
 
-const LoginPage: React.FC<IPage> = (props) => {
+const RegisterPage: React.FC<IPage> = (props) => {
   const [password, setPassword] = React.useState("")
   const [email, setEmail] = React.useState("")
   const history = useHistory()
@@ -30,7 +30,7 @@ const LoginPage: React.FC<IPage> = (props) => {
 
   const signUpWithEmailAndPassword = () => {
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         logging.info(result)
         history.push("/home")
@@ -48,7 +48,7 @@ const LoginPage: React.FC<IPage> = (props) => {
   }
   return (
     <PageContainer>
-      <p>LOGIN PAGE</p>
+      <p>Register PAGE</p>
       <FormContainer>
         <TextField
           onChange={handleEmailChange}
@@ -66,7 +66,7 @@ const LoginPage: React.FC<IPage> = (props) => {
   )
 }
 
-export default LoginPage
+export default RegisterPage
 
 const PageContainer = styled.div`
   display: flex;
@@ -74,7 +74,7 @@ const PageContainer = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color: blue;
+  background-color: yellow;
 `
 const FormContainer = styled.div`
   display: flex;

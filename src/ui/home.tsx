@@ -31,4 +31,5 @@ const PageContainer = styled.div`
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  background-color: red;
 `
